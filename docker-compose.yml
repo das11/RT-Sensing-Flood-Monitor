@@ -1,0 +1,50 @@
+services:
+  bridge:
+    build: .
+    container_name: flood-monitor-bridge
+    restart: always
+    volumes:
+      # Mount the usage credentials in case they change without rebuild
+      - ./serviceAccountKey.json:/app/serviceAccountKey.json
+      # Mount source code for hot-reloading/dev without rebuild
+      - ./src:/app/src
+    env_file:
+      - .env
+    dns:
+      - 8.8.8.8
+    depends_on:
+      - influxdb
+
+  # Self-hosted InfluxDB
+  influxdb:
+    image: influxdb:2
+    container_name: flood-monitor-influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=password123
+      - DOCKER_INFLUXDB_INIT_ORG=kabir-das-org
+      - DOCKER_INFLUXDB_INIT_BUCKET=flood_monitoring
+      - DOCKER_INFLUXDB_INIT_RETENTION=0s # Infinite retention
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: flood-monitor-grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - influxdb
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+volumes:
+  influxdb_data:
+  grafana_data:

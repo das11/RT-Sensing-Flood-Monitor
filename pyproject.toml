@@ -1,0 +1,16 @@
+[project]
+name = "flood-monitor-bridge"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9.5"
+dependencies = [
+    "firebase-admin>=7.1.0",
+    "influxdb-client>=1.50.0",
+    "python-dotenv>=1.2.1",
+]
+
+[tool.pyrefly]
+# "." tells Pyrefly to treat the project root as a source root.
+# We also add the site-packages from the local .venv so it finds installed libraries.
+search-path = [".", ".venv/lib/python3.9/site-packages"]

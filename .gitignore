@@ -1,0 +1,16 @@
+
+# Environment Variables
+.env
+
+# Secrets
+serviceAccountKey.json
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# IDEs
+.vscode/
+.idea/
+.env.example
