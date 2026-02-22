@@ -1,0 +1,56 @@
+.supporters-section {
+  padding: 4rem 2rem;
+  background: transparent;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.supporters-container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.supporters-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.supporters-subtitle {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-bottom: 3rem;
+}
+
+.supporters-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.supporter-logo {
+  max-height: 80px;
+  max-width: 200px;
+  object-fit: contain;
+  /* Make logos look consistent, maybe they have different colors */
+  filter: grayscale(100%) opacity(0.7);
+  transition: all 0.3s ease;
+}
+
+.supporter-logo:hover {
+  filter: grayscale(0%) opacity(1);
+  transform: scale(1.05);
+}
+
+@media (min-width: 768px) {
+  .supporters-logos {
+    gap: 5rem;
+  }
+}

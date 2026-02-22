@@ -1,0 +1,89 @@
+[
+    {
+        "id": "floodmonitor1",
+        "name": "Flood Monitor 1",
+        "description": "Main sensor monitoring the northern bridge support.",
+        "position": [
+            26.1445,
+            91.7362
+        ],
+        "thresholds": {
+            "low": 200,
+            "medium": 400,
+            "high": 600
+        },
+        "station_id": "floodmonitor1",
+        "default_data": {
+            "level": 350,
+            "battery": 12.5,
+            "solar": 14.2
+        }
+    },
+    {
+        "id": "floodmonitor2",
+        "name": "Flood Monitor 2",
+        "description": "Monitoring water levels in the southern drainage system.",
+        "position": [
+            26.1158,
+            91.7086
+        ],
+        "thresholds": {
+            "low": 150,
+            "medium": 300,
+            "high": 500
+        },
+        "station_id": "floodmonitor2",
+        "image_views": [
+            "front",
+            "side"
+        ],
+        "default_data": {
+            "level": 520,
+            "battery": 11.8,
+            "solar": 13.5
+        }
+    },
+    {
+        "id": "LoRaWAN",
+        "name": "LoRaWAN",
+        "description": "Located in the central market for early flood warning.",
+        "position": [
+            26.1832,
+            91.7505
+        ],
+        "thresholds": {
+            "low": 100,
+            "medium": 250,
+            "high": 400
+        },
+        "station_id": "LoRaWAN",
+        "default_data": {
+            "level": 120,
+            "battery": 3.7,
+            "solar": 5.0
+        }
+    },
+    {
+        "id": "Nadi_Mitra_2",
+        "name": "Nadi Mitra 2",
+        "description": "Nadi Mitra Sensor 2 — river level monitoring.",
+        "position": [
+            26.16,
+            91.74
+        ],
+        "thresholds": {
+            "low": 100,
+            "medium": 250,
+            "high": 400
+        },
+        "station_id": "Nadi_Mitra_2",
+        "image_views": [
+            "default"
+        ],
+        "default_data": {
+            "level": 150,
+            "battery": 0,
+            "solar": 0
+        }
+    }
+]
