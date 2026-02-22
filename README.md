@@ -181,4 +181,3 @@ Grafana spins up blank on first boot. To set up:
 3. **Import Dashboard:** Upload `grafana_dashboard.json` (located in `flood-monitor-bridge/`).
 
 ---
-*Built by the HimDhara Development Team.*
