@@ -34,7 +34,7 @@ def save_key(sensor_id, key):
     with open(KEYS_FILE, 'w') as f:
         json.dump(data, f, indent=2)
 
-def generate_data(sensor_id, count, delay, interval, start_past=False):
+def generate_data(sensor_id, count, delay, interval, start_past=False, static_value=None):
     print(f"🚀 Starting simulation for {sensor_id}...")
     print(f"📡 Generating {count} records.")
     print(f"   - Virtual Interval: {interval}s (Data timestamp spacing)")
@@ -56,11 +56,14 @@ def generate_data(sensor_id, count, delay, interval, start_past=False):
     batch_keys = []
     
     for i in range(count):
-        # Simulate a sine wave for water level (0 to 250cm)
-        ft = current_virtual_time
-        dist_raw = int(150 + 100 * math.sin(ft / 1000))
-        dist_raw += random.randint(-2, 2)
-        dist_raw = max(0, dist_raw)
+        if static_value is not None:
+            dist_raw = static_value
+        else:
+            # Simulate a sine wave for water level (0 to 250cm)
+            ft = current_virtual_time
+            dist_raw = int(150 + 100 * math.sin(ft / 1000))
+            dist_raw += random.randint(-2, 2)
+            dist_raw = max(0, dist_raw)
 
         # Basic values for solar/battery
         bat = round(random.uniform(12.5, 14.5), 2)
@@ -152,11 +155,12 @@ if __name__ == "__main__":
     parser.add_argument("--delay", type=float, default=0.5, help="Execution delay (seconds) between pushes (Speed of script)")
     parser.add_argument("--interval", type=int, default=120, help="Virtual time interval (seconds) between data points (Timestamp spacing)")
     parser.add_argument("--past", action="store_true", help="If set, generates data ending at 'now' (Backfill mode). If not set, starts at 'now' (Future/Live mode).")
+    parser.add_argument("--static-value", type=int, default=None, help="Optional static value to use instead of generating a sine wave")
 
     args = parser.parse_args()
     setup_firebase()
 
     if args.mode == "run":
-        generate_data(args.sensor, args.count, args.delay, args.interval, args.past)
+        generate_data(args.sensor, args.count, args.delay, args.interval, args.past, args.static_value)
     elif args.mode == "clean":
         cleanup_data()
