@@ -13,7 +13,6 @@ const SupportersSection = () => {
         <p className="supporters-subtitle">Our partners in making this project possible.</p>
         <div className="supporters-logos">
           <img src={logo1} alt="Supporter 1" className="supporter-logo" />
-          <img src={logo2} alt="Supporter 2" className="supporter-logo" />
           <img src={logo3} alt="Supporter 3" className="supporter-logo" />
           <img src={logo4} alt="Supporter 4" className="supporter-logo" />
         </div>
